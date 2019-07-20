@@ -23,11 +23,42 @@ if ($error != '')
 		echo '<div style="padding:4px; border:1px solid red; color:red;">'.$error.'</div>';
 	}
 ?>
+	
+	<br>
+
+		    <strong>Vechile number: *</strong><?php echo $vehicle_number; ?><b/>
+		    
+			<select name="vehicle_number">
+		    <option selected="selected" value="">Select vehicle number</option>
+		    <?php 
+		   
+		        $query = "SELECT * FROM vehicle";
+
+		        $result = mysqli_query($con, $query);
+		  
+
+			    if ($result) {
+			      while($row = mysqli_fetch_array($con, $result)) {
+					// do something with the $row
+			        
+			      	if ($vehicle_number == $row['id']){
+
+			      		echo '<option selected="selected" value="'.$row['id'].'">"'.$row['vehicle_number'].'"</option>';
+			      		
+			      	}else{
+
+			      		echo '<option value="'.$row['id'].'">"'.$row['vehicle_number'].'"</option>';
+			      	}
+			      }
+			    }
+			    else {
+			      echo mysqli_error($con);
+			    }
+		    ?>
 
 	<form action="" method="post">
 	<div>
 		<br>
-		<strong>Vehicle number: *</strong> <input type="text" name="vehicle_number" value="<?php echo $vehicle_number; ?>" /><br/>
 		<br>
 		<strong>Maintenance details: *</strong> <input type="text" name="maintenence_details" value="<?php echo $maintenence_details; ?>" /><br/>
 		<br>
