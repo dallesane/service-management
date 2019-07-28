@@ -1,7 +1,13 @@
+<?php
+  require('connect_db.php');
+  require("login/auth.php");
+?>
+
 <!doctype html>
-<title>CSS Grid Template 6</title>
+<title>Project management</title>
 
 <link rel="stylesheet" type="text/css" href="css/style.css"> 
+
 <body>
   <header id="pageHeader"><h2>Customer Information Management System - CIMS</h2></header>
   <article id="mainArticle">
@@ -34,7 +40,7 @@
       <li>
          Fuel
          <ul class="hidden">
-          <li><a href="fuel/fuel_form.php">Add fuel name</a></li>
+          <li><a href="fuel/fuel_name.php">Add fuel name</a></li>
           <li><a href="fuel/fuel_list.php">Fuel Type</a></li>
         </ul>
       </li>
@@ -55,13 +61,17 @@
       <li>
          Vehicle
          <ul class="hidden">
-          <li><a href="vehicle/vehicle_form.php">Add New vehicle_form</a></li>
+          <li><a href="vehicle/vehicle_form.php">Add New vehicle</a></li>
           <li><a href="vehicle/vehicle_list.php">Vechicle List</a></li>
         </ul>
       </li>
     </ul>
+        <ul class="hidden">
+        <li><b><a href="login/logout.php">logout</a></b>
+        </ul>
+      </li>
   </nav>
   </nav>
-  <footer id="pageFooter"><center>© 2019. APU. All Rights Reserved.</center></footer>
+  <footer id="pageFooter"><center>Copy-left. Mandip's college project</center></footer>
 </body>
 </html>
