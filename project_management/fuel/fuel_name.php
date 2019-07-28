@@ -1,12 +1,12 @@
 <!doctype html>
-<title>Project management</title>
+<title>project management</title>
 
 <link rel="stylesheet" type="text/css" href="../css/style.css"> 
 <body>
 	<header id="pageHeader"><h2>Customer Information Management System - CIMS</h2></header>
 	<article id="mainArticle">
-	<h2>Add new project</h2>
-    <?php
+	<h2>Add fuel name</h2>
+	<?php
 	/*
 	NEW.PHP
 	Allows user to create a new entry in the database
@@ -15,12 +15,13 @@
 	// since this form is used multiple times in this file, I have made it a function that is easily reusable
 	         // PERSONAL
 
-	function renderForm($project_name, $project_type, $cost, $start_date, $end_date, $error)
+	function renderForm($fuel_name, $error)
 	{
 	?>
-
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+	<html>
 	<head>
-		<title>Add New project details</title>
+		<title>Project management</title>
 	</head>
 	<body>
 	<?php
@@ -34,15 +35,7 @@
 		<form action="" method="post">
 		<div>
 			<br>
-			<strong>Project name: *</strong> <input type="text" name="project_name" value="<?php echo $project_name; ?>" /><br/>
-			<br>
-			<strong>Type: *</strong> <input type="text" name="project_type" value="<?php echo $project_type; ?>" /><br/>
-			<br>
-			<strong>Cost: *</strong> <input type="text" name="cost" value="<?php echo $cost; ?>" /><br/>
-			<br>
-			<strong>Start date: *</strong> <input type="text" name="start_date" value="<?php echo $start_date; ?>" /><br/>
-			<br>
-			<strong>End date: *</strong> <input type="text" name="end_date" value="<?php echo $end_date; ?>" /><br/>
+			<strong>Fuel name: *</strong> <input type="text" name="fuel_name" value="<?php echo $fuel_name; ?>" /><br/>
 			<br>
 			<p>* required</p>
 	 
@@ -63,46 +56,36 @@
 
 		{
 		// get form data, making sure it is valid
-		$project_name = mysqli_real_escape_string($con, $_POST['project_name']);
-		$project_type = mysqli_real_escape_string($con, $_POST['project_type']);
-		$cost = mysqli_real_escape_string($con, $_POST['cost']);
-		$start_date = mysqli_real_escape_string($con, $_POST['start_date']);
-		$end_date = mysqli_real_escape_string($con, $_POST['end_date']);
+		$fuel_name = mysqli_real_escape_string($con, $_POST['fuel_name']);
 
 		// check to make sure both fields are entered
 
-	if ($project_name == '' || $project_type == '' || $cost == '' || $start_date == '' || $end_date == '' )
+	if ($fuel_name == '' )
 		{
 		// generate error message
 			$error = 'ERROR: Please fill in all required fields!';
 		// if either field is blank, display the form again
-			renderForm($project_name, $project_type, $cost, $start_date, $end_date, $error);
+			renderForm($fuel_name, $error);
 		}
 	else
 			{
 			// save the data to the database
-			mysqli_query($con, "INSERT project SET project_name='$project_name', project_type='$project_type', cost='$cost', start_date='$start_date', end_date='$end_date'")
+			mysqli_query($con, "INSERT fuel SET fuel_name='$fuel_name'")
 			or die(mysqli_error($con));
 
-			print("Project name saved successfully !!");
-
 			// once saved, redirect back to the view page
-			// header("Location: project_form.php");
+			//header("Location: project_form.php");
 			}
 	}
 	else
 			// if the form hasn't been submitted, display the form
 			{
-			renderForm('', '', '', '', '', '');
+			renderForm('', '');
 			}
 	?>
 
-  	</article>
-  	<nav id="mainNav">
-    <nav class="sidenav">
-    <ul class="main-buttons">
-      <li>
-         Project Details
+	</article>
+  	Project Details
          <ul class="hidden"> 
           <li><a href="../project_details/project_form.php">Add New</a></li>
           <li><a href="../project_details/project_list.php">Project List</a></li>

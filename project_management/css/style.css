@@ -1,0 +1,92 @@
+body { 
+  display: grid;
+  grid-template-areas: 
+    "header header"
+    "nav article"
+    "footer footer";
+  grid-template-rows: 80px 1fr 70px 70px;  
+  grid-template-columns: 20% 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  height: 100vh;
+  margin: 0;
+  }  
+header, footer, article, nav, div {
+  padding: 1.2em;
+  background: skyblue;
+  }
+#pageHeader {
+  grid-area: header;
+  text-align: center;
+  }
+#pageFooter {
+  grid-area: footer;
+  }
+#mainArticle { 
+  grid-area: article;      
+  }
+#mainNav { 
+  grid-area: nav; 
+  }
+
+/* Stack the layout on small devices/viewports. */
+@media all and (max-width: 575px) {
+  body { 
+    grid-template-areas: 
+      "header"
+      "article"
+      "nav"
+      "footer";
+    grid-template-rows: 80px 1fr 70px 1fr 70px;  
+    grid-template-columns: 1fr;
+ }
+}
+
+/*navigations main designs*/
+
+$color-dark: #1E2027;
+$width: 280px;
+$width-compressed: 52px;
+
+.sidenav{
+  position: fixed;
+  width: $width;
+  height: 100%;
+  background-color: $color-dark;
+
+  .main-buttons{
+    list-style-type: none;
+    margin: 64px 0;
+    padding: 0;
+    color: #fff;
+    li{
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    
+    & > li{
+      padding: 16px $width-compressed;
+      @include box-sizing(border-box);
+
+      .fa{
+        position: absolute;
+        left: 12px;
+        color: lighten($color-dark, 16);
+      }
+
+      &:hover, &:active, &:focus{
+        .hidden{
+          width: $width - $width-compressed;
+        }
+        background-color: lighten($color-dark, 5);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
+body{background-color: lighten($color-dark, 68);line-height: 30px;}html,body{height:100%;}@import url(https://fonts.googleapis.com/css?family=Open+Sans:600);
