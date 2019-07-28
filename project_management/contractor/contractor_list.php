@@ -27,56 +27,55 @@
 		}
 		</style>
 
-		<title>CSS Grid Template 6</title>
+		<title>Project management</title>
 
-		<link rel="stylesheet" type="text/css" href="../css/style.css"> 
-		<body>
-		<header id="pageHeader"><h2>Customer Information Management System - CIMS</h2></header>
-		<article id="mainArticle">
-	  	<h2>Contractor list</h2>		
-
-			<table>
-			  <tr>
-			    <th>id</th>
-			    <th>Contractor Name</th>
-			    <th>Contact</th>
-			    <th>Project name</th>
-			    <th>Address</th>
-			    <th>Machine list</th>
-			    <th>Machine cost</th>
-			    <th>Advance payment</th>
-			  </tr> 
-	    	
-	   	
-	    	<?php
-	    	    $query = "SELECT * FROM contractor INNER JOIN project ON contractor.id=project.id ";
-
-		        $result = mysqli_query($con, $query);
-		  
-
-			    if ($result) {
-
-			        while($row = mysqli_fetch_array($result)) {
-	    	            echo '<tr>';
-	    	            echo '<td>'. $row['id'].'</td>';
-	    	            echo '<td>'. $row['contractor_name'].'</td>';
-	    	            echo '<td>'. $row['contact'].'</td>';
-	    	            echo '<td>'. $row['project_name'].'</td>';
-	    	            echo '<td>'. $row['address'].'</td>';
-	    	            echo '<td>'. $row['machine_list'].'</td>';
-	    	            echo '<td>'. $row['machine_cost'].'</td>';
-	    	            echo '<td>'. $row['advance_payment'].'</td>';
-	    	            echo '</tr>';
-
-	    	        }
-	    	    }  
-	  			  	
-	    	?>
-	    		
-	    </table>
-	</body>
-	</article>
-  	<nav id="mainNav">
+<link rel="stylesheet" type="text/css" href="../css/style.css"> 
+<body>
+  <header id="pageHeader"><h2>Customer Information Management System - CIMS</h2></header>
+  <article id="mainArticle">
+  <h2>All contractor List</h2>
+  <table width="100%" border="1" style="border-collapse:collapse;">
+<thead>
+  <tr>
+  <th><strong>Id</strong></th>
+  <th><strong>Contractor Name</strong></th>
+  <th><strong>contact</strong></th>
+  <th><strong>Project name</strong></th>
+  <th><strong>Address</strong></th>
+  <th><strong>Machine list</strong></th>
+  <th><strong>Machine cost</strong></th>
+  <th><strong>Advance payment</strong></th>
+  <th><strong>Edit</strong></th>
+  <th><strong>Delete</strong></th>
+  </tr>
+</thead>
+<tbody>
+<?php
+$count=1;
+$sel_query="Select * from contractor ORDER BY id desc;";
+$result = mysqli_query($con,$sel_query);
+while($row = mysqli_fetch_assoc($result)) { ?>
+  <tr><td align="center"><?php echo $count; ?></td>
+  <td align="center"><?php echo $row["contractor_name"]; ?></td>
+  <td align="center"><?php echo $row["contact"]; ?></td>
+  <td align="center"><?php echo $row["project_name"]; ?></td>
+  <td align="center"><?php echo $row["address"]; ?></td>
+  <td align="center"><?php echo $row["machine_list"]; ?></td>
+  <td align="center"><?php echo $row["machine_cost"]; ?></td>
+  <td align="center"><?php echo $row["advance_payment"]; ?></td>
+  <td align="center">
+  <a href="contractor_edit.php?id=<?php echo $row["id"]; ?>"><button>Edit</button></a>
+  </td>
+  <td align="center">
+  <a href="contractor_delete.php?id=<?php echo $row["id"]; ?>"><button>Delete</button></a>
+  </td>
+  </tr>
+    <?php $count++; } ?>
+    </tbody>
+    </table>
+    </div>
+    </article>
+    <nav id="mainNav">
     <nav class="sidenav">
     <ul class="main-buttons">
       <li>
@@ -129,13 +128,12 @@
         </ul>
       </li>
     </ul>
-    <ul class="hidden">
+      <ul class="hidden">
       <li><b><a href="../login/logout.php">logout</a></b>
     </ul>
     </li>
-	</nav>
-  </nav>
+    </nav>
+    </nav>
   <footer id="pageFooter"><center>Copy-left. Mandip's college project</center></footer>
 </body>
-
 </html> 

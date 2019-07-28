@@ -1,74 +1,77 @@
 <?php
-    include("../connect_db.php");
+  require('../connect_db.php');
+  require('../login/auth.php');
 ?>
 <html>
-	<style>
-		table {
-		    font-family: arial, sans-serif;
-		    border-collapse: collapse;
-		    width: 100%;
-			}
+    <style>
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
 
-			td, th {
-			    border: 1px solid #dddddd;
-			    text-align: left;
-			    padding: 8px;
-			}
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
 
-			tr:nth-child(even) {
-			    background-color: #dddddd;
-			}
-	</style>			
-	<body>
-	<style>
-		table, th, td {
-		    border: 3px solid black;
-		}
-	</style>
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+    </style>      
+    <body>
+    <style>
+    table, th, td {
+        border: 3px solid black;
+    }
+    </style>
 
-	<title>Project management</title>
+    <title>Project management</title>
 
-	<link rel="stylesheet" type="text/css" href="../css/style.css"> 
-	<body>
-	<header id="pageHeader"><h2>Customer Information Management System - CIMS</h2></header>
-	<article id="mainArticle">
-  	<h2>Fuel record list</h2>	
-
-		<table>
-		    <tr>
-			    <th>id</th>
-			    <th>Vehicle number</th>
-			    <th>Fuel name</th>
-			    <th>Date</th>
-			    <th>Quantity</th>
-			    <th>Amount</th>
-			  </tr> 	
-	   	
-	<?php
-	    $query = "SELECT * FROM fuel_record f JOIN vehicle v ON f.vehicle_number=v.id JOIN fuel l ON f.id=l.id";
-
-		    $result = mysqli_query($con, $query);
-
-			if ($result) {
-
-			    while($row = mysqli_fetch_array($result)) {
-	    	        echo '<tr>';
-	                echo '<td>'. $row['id'].'</td>';
-	   	            echo '<td>'. $row['vehicle_number'].'</td>';
-	   	            echo '<td>'. $row['fuel_name'].'</td>';
-	   	            echo '<td>'. $row['date'].'</td>';
-	   	            echo '<td>'. $row['quantity'].'</td>';
-	   	            echo '<td>'. $row['amount'].'</td>';
-	   	            echo '</tr>';
-
-	    	        }
-	    	    }    	
-	    	?>
-	    		
-	    </table>
-	</body>
-	</article>
-  	<nav id="mainNav">
+<link rel="stylesheet" type="text/css" href="../css/style.css"> 
+<body>
+  <header id="pageHeader"><h2>Customer Information Management System - CIMS</h2></header>
+  <article id="mainArticle">
+  <h2>All driver List</h2>
+  <table width="100%" border="1" style="border-collapse:collapse;">
+<thead>
+  <tr>
+  <th><strong>Id</strong></th>
+  <th><strong>Vehicle number</strong></th>
+  <th><strong>Fuel name</strong></th>
+  <th><strong>Date</strong></th>
+  <th><strong>Quantity</strong></th>
+  <th><strong>Amount</strong></th>
+  <th><strong>Edit</strong></th>
+  <th><strong>Delete</strong></th>
+  </tr>
+</thead>
+<tbody>
+<?php
+$count=1;
+$sel_query="Select * from fuel_record ORDER BY id desc;";
+$result = mysqli_query($con,$sel_query);
+while($row = mysqli_fetch_assoc($result)) { ?>
+  <tr><td align="center"><?php echo $count; ?></td>
+  <td align="center"><?php echo $row["vehicle_number"]; ?></td>
+  <td align="center"><?php echo $row["fuel_name"]; ?></td>
+  <td align="center"><?php echo $row["date"]; ?></td>
+  <td align="center"><?php echo $row["quantity"]; ?></td>
+  <td align="center"><?php echo $row["amount"]; ?></td>
+  <td align="center">
+  <a href="fuel_record_edit.php?id=<?php echo $row["id"]; ?>"><button>Edit</button></a>
+  </td>
+  <td align="center">
+  <a href="fuel_record_delete.php?id=<?php echo $row["id"]; ?>"><button>Delete</button></a>
+  </td>
+  </tr>
+    <?php $count++; } ?>
+    </tbody>
+    </table>
+    </div>
+    </article>
+    <nav id="mainNav">
     <nav class="sidenav">
     <ul class="main-buttons">
       <li>
@@ -121,7 +124,7 @@
         </ul>
       </li>
     </ul>
-         <ul class="hidden">
+      <ul class="hidden">
       <li><b><a href="../login/logout.php">logout</a></b>
     </ul>
     </li>
