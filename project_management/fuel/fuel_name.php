@@ -85,7 +85,11 @@
 	?>
 
 	</article>
-  	Project Details
+  	<nav id="mainNav">
+    <nav class="sidenav">
+    <ul class="main-buttons">
+      <li>
+         Project Details
          <ul class="hidden"> 
           <li><a href="../project_details/project_form.php">Add New</a></li>
           <li><a href="../project_details/project_list.php">Project List</a></li>
@@ -136,6 +140,6 @@
         </ul>
     </nav>
     </nav>
-  <footer id="pageFooter"><center>© 2019. APU. All Rights Reserved.</center></footer>
+  <footer id="pageFooter"><center>Copy-left. Mandip's college project</center></footer>
 </body>
 </html> 

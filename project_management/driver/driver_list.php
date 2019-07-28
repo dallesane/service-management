@@ -119,10 +119,13 @@
           <li><a href="../vehicle/vehicle_form.php">Add New</a></li>
           <li><a href="../vehicle/vehicle_list.php">Vechicle List</a></li>
         </ul>
-        </li>
-        </ul>
-    </nav>
-    </nav>
-  <footer id="pageFooter"><center>© 2019. APU. All Rights Reserved.</center></footer>
+      </li>
+    </ul>
+</nav>
+
+
+  </nav>
+  <footer id="pageFooter"><center>Copy-left. Mandip's college project</center></footer>
 </body>
+
 </html> 

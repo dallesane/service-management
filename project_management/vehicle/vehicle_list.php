@@ -54,10 +54,12 @@
 	            echo '<td>'. $row['vehicle_name'].'</td>';
 	            echo '<td>'. $row['vehicle_number'].'</td>';
 	            echo '</tr>';
-
-	    	    }
-	    	}  	  	
-	    ?>
+           }
+        }  
+              
+      ?>   
+      </table>
+  </body>
 	</article>
   	<nav id="mainNav">
     <nav class="sidenav">
@@ -114,6 +116,6 @@
         </ul>
     </nav>
     </nav>
-  <footer id="pageFooter"><center>© 2019. APU. All Rights Reserved.</center></footer>
+  <footer id="pageFooter"><center>Copy-left. Mandip's college project</center></footer>
 </body>
 </html> 
