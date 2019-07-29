@@ -7,7 +7,7 @@
 <title>Project management</title>
 
 <link rel="stylesheet" type="text/css" href="../css/style.css"> 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -15,11 +15,11 @@
   $( function() {
     $( "#datepicker" ).datepicker();
   } );
-  </script>
+  </script> -->
 <body>
 	<header id="pageHeader"><h2>Customer Information Management System - CIMS</h2></header>
 	<article id="mainArticle">
-	<h2>Add new project</h2>
+	<h2>Add new materials</h2>
     <?php
 	/*
 	NEW.PHP
@@ -29,12 +29,12 @@
 	// since this form is used multiple times in this file, I have made it a function that is easily reusable
 	         // PERSONAL
 
-	function renderForm($project_name, $project_type, $cost, $start_date, $end_date, $error)
+	function renderForm($item_name, $unit, $price, $error)
 	{
 	?>
 
 	<head>
-		<title>Add New project details</title>
+		<title>Add New materials details</title>
 	</head>
 	<body>
 	<?php
@@ -48,15 +48,12 @@
 		<form action="" method="post">
 		<div>
 			<br>
-			<strong>Project name: *</strong> <input type="text" name="project_name" value="<?php echo $project_name; ?>" /><br/>
+			<strong>Item name: *</strong> <input type="text" name="item_name" value="<?php echo $item_name; ?>" /><br/>
 			<br>
-			<strong>Type: *</strong> <input type="text" name="project_type" value="<?php echo $project_type; ?>" /><br/>
+			<strong>Unit: *</strong> <input type="text" name="unit" value="<?php echo $unit; ?>" /><br/>
 			<br>
-			<strong>Cost: *</strong> <input type="text" name="cost" value="<?php echo $cost; ?>" /><br/>
+			<strong>Price: *</strong> <input type="text" name="price" value="<?php echo $price; ?>" /><br/>
 			<br>
-			<strong>Start date: *</strong> <input type="text" id="datepicker" name="start_date" value="<?php echo $start_date; ?>" /><br/>
-			<br>
-			<strong>End date: *</strong> <input type="text" id="datepicker" name="end_date" value="<?php echo $end_date; ?>" /><br/>
 			<br>
 			<p>* required</p>
 	 
@@ -77,28 +74,26 @@
 
 		{
 		// get form data, making sure it is valid
-		$project_name = mysqli_real_escape_string($con, $_POST['project_name']);
-		$project_type = mysqli_real_escape_string($con, $_POST['project_type']);
-		$cost = mysqli_real_escape_string($con, $_POST['cost']);
-		$start_date = mysqli_real_escape_string($con, $_POST['start_date']);
-		$end_date = mysqli_real_escape_string($con, $_POST['end_date']);
+		$item_name = mysqli_real_escape_string($con, $_POST['item_name']);
+		$unit = mysqli_real_escape_string($con, $_POST['unit']);
+		$price = mysqli_real_escape_string($con, $_POST['price']);
 
 		// check to make sure both fields are entered
 
-	if ($project_name == '' || $project_type == '' || $cost == '' || $start_date == '' || $end_date == '' )
+	if ($item_name == '' || $unit == '' || $price == '' )
 		{
 		// generate error message
 			$error = 'ERROR: Please fill in all required fields!';
 		// if either field is blank, display the form again
-			renderForm($project_name, $project_type, $cost, $start_date, $end_date, $error);
+			renderForm($item_name, $unit, $price, $error);
 		}
 	else
 			{
 			// save the data to the database
-			mysqli_query($con, "INSERT project SET project_name='$project_name', project_type='$project_type', cost='$cost', start_date='$start_date', end_date='$end_date'")
+			mysqli_query($con, "INSERT materials SET item_name='$item_name', unit='$unit', price='$price'")
 			or die(mysqli_error($con));
 
-			print("Project name saved successfully !!");
+			print("Materials details saved successfully !!");
 
 			// once saved, redirect back to the view page
 			// header("Location: project_form.php");
@@ -107,7 +102,7 @@
 	else
 			// if the form hasn't been submitted, display the form
 			{
-			renderForm('', '', '', '', '', '');
+			renderForm('', '', '', '');
 			}
 	?>
 

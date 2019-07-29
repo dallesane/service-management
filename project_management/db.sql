@@ -80,9 +80,37 @@ FOREIGN KEY (vehicle_number)
 
 CREATE TABLE users (
 id int(11) NOT NULL AUTO_INCREMENT,
-username varchar(50) NOT NULL,
-password varchar(50) NOT NULL,
+username VARCHAR(50) NOT NULL,
+password VARCHAR(50) NOT NULL,
 PRIMARY KEY (id)
 );
 
+CREATE TABLE materials (
+id INT NOT NULL AUTO_INCREMENT,
+item_name VARCHAR(50) NOT NULL,
+unit INT(50) NOT NULL,
+price VARCHAR(50) NOT NULL,
+PRIMARY KEY (id)
+);
+
+CREATE TABLE materials_supply (
+id INT NOT NULL AUTO_INCREMENT,
+ordered_date DATE NOT NULL,
+supplied_date DATE NULL,
+contractor_name INT NOT NULL,
+item_name INT NOT NULL,
+price INT NOT NULL,
+
+
+PRIMARY KEY (id),
+FOREIGN KEY (contractor_name)
+	REFERENCES contractor(id)
+	ON DELETE CASCADE,
+FOREIGN KEY (item_name)
+	REFERENCES materials(id)
+	ON DELETE CASCADE,
+FOREIGN KEY (price)
+	REFERENCES materials(id)
+	ON DELETE CASCADE		
+);
 
