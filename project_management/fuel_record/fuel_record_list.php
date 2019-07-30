@@ -50,7 +50,7 @@
 <tbody>
 <?php
 $count=1;
-$sel_query="Select * from fuel_record ORDER BY id desc;";
+$sel_query="SELECT * FROM fuel_record f JOIN vehicle v ON f.id=v.id JOIN fuel n ON f.id=v.id;";
 $result = mysqli_query($con,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
   <tr><td align="center"><?php echo $count; ?></td>

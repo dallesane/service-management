@@ -77,6 +77,8 @@
 			mysqli_query($con, "INSERT fuel SET fuel_name='$fuel_name'")
 			or die(mysqli_error($con));
 
+			print("Data saved successfully");
+
 			// once saved, redirect back to the view page
 			//header("Location: project_form.php");
 			}

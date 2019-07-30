@@ -49,7 +49,7 @@
 <tbody>
 <?php
 $count=1;
-$sel_query="Select * from maintenance_record ORDER BY id desc;";
+$sel_query="Select * from maintenance_record m JOIN vehicle v ON m.vehicle_number=v.id;";
 $result = mysqli_query($con,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
   <tr><td align="center"><?php echo $count; ?></td>

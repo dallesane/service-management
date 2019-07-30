@@ -1,7 +1,7 @@
 <?php
-	require('../connect_db.php');
-  	require('../login/auth.php');
-	
+  require('../connect_db.php');
+    require('../login/auth.php');
+  
 $id=$_REQUEST['id'];
 $query = "SELECT * from driver where id='".$id."'"; 
 $result = mysqli_query($con, $query) or die ( mysqli_error());
@@ -15,53 +15,54 @@ $row = mysqli_fetch_assoc($result);
 
 <link rel="stylesheet" type="text/css" href="../css/style.css"> 
 <body>
-	<header id="pageHeader"><h2>Customer Information Management System - CIMS</h2></header>
-	<article id="mainArticle">
-	<h2>Edit driver</h2>
-	<!-- <link rel="stylesheet" href="css/style.css" /> -->
-	</head>
-	<body>
-	<div class="form">
+  <header id="pageHeader"><h2>Customer Information Management System - CIMS</h2></header>
+  <article id="mainArticle">
+  <h2>Edit contractor</h2>
+  <!-- <link rel="stylesheet" href="css/style.css" /> -->
+  </head>
+  <body>
+  <div class="form">
 
 <?php
-	$status = "";
-	if(isset($_POST['new']) && $_POST['new']==1)
-	{
-	$id=$_REQUEST['id'];
-	$vehicle_number =$_REQUEST['vehicle_number'];
-	$driver_name =$_REQUEST['driver_name'];
-	$date =$_REQUEST['date'];
-	$payment =$_REQUEST['payment'];
+  $status = "";
+  if(isset($_POST['new']) && $_POST['new']==1)
+  {
+  $id=$_REQUEST['id'];
+  $vehicle_number =$_REQUEST['vehicle_number'];
+  $date =$_REQUEST['date'];
+  $driver_name =$_REQUEST['driver_name'];
+  $payment =$_REQUEST['payment'];
 
 
-	$update="update driver set vehicle_number='".$vehicle_number."',
-	driver_name='".$driver_name."', date='".$date."',
-	payment='".$payment."'  where id='".$id."'";
-	mysqli_query($con, $update) or die(mysqli_error());
-	$status = "Record Updated Successfully. </br></br>
-	<a href='driver_list.php'>View Updated list</a>";
-	echo '<p style="color:#FF0000;">'.$status.'</p>';
-	}else {
+
+  $update="update driver set vehicle_number='".$vehicle_number."',
+  date='".$date."', driver_name='".$driver_name."',
+  payment='".$payment."'  where id='".$id."'";
+  mysqli_query($con, $update) or die(mysqli_error());
+  $status = "Record Updated Successfully. </br></br>
+  <a href='driver_list.php'>View Updated list</a>";
+  echo '<p style="color:#FF0000;">'.$status.'</p>';
+  }else {
 ?>
-	<div>
-		<form name="form" method="post" action=""> 
-		<input type="hidden" name="new" value="1" />
-		<input name="id" type="hidden" value="<?php echo $row['id'];?>" />
-		<p><input type="text" name="vehicle_number" placeholder="Enter vehicle number" 
-		required value="<?php echo $row['vehicle_number'];?>" /></p>
-		<p><input type="text" name="driver_name" placeholder="Enter driver name" 
-		required value="<?php echo $row['driver_name'];?>" /></p>
-		<p><input type="text" name="date" placeholder="Enter date" 
-		required value="<?php echo $row['date'];?>" /></p>
+  <div>
+    <form name="form" method="post" action=""> 
+    <input type="hidden" name="new" value="1" />
+    <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
+    <p><input type="text" name="vehicle_number" placeholder="Enter vehicle number" 
+    required value="<?php echo $row['vehicle_number'];?>" /></p>
+    <p><input type="text" name="date" placeholder="Enter date" 
+    required value="<?php echo $row['date'];?>" /></p>
+    <p><input type="text" name="driver_name" placeholder="Enter driver name" 
+    required value="<?php echo $row['project_name'];?>" /></p>
     <p><input type="text" name="payment" placeholder="Enter payment" 
     required value="<?php echo $row['payment'];?>" /></p>
-		<p><input name="submit" type="submit" value="Update" /></p>
-		</form>
-	<?php } ?>
-	</div>
-	</div>
-	</article>
-  	<nav id="mainNav">
+    <p><input name="submit" type="submit" value="Update" /></p>
+    </form>
+  <?php } ?>
+  </div>
+  </div>
+  </article>
+    <nav id="mainNav">
     <nav class="sidenav">
     <ul class="main-buttons">
       <li>

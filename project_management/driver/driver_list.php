@@ -49,8 +49,8 @@
 <tbody>
 <?php
 $count=1;
-$sel_query="Select * from driver ORDER BY id desc;";
-$result = mysqli_query($con,$sel_query);
+$sl_query="Select * FROM driver d JOIN vehicle v ON d.vehicle_number=v.id;";
+$result = mysqli_query($con,$sl_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
   <tr><td align="center"><?php echo $count; ?></td>
   <td align="center"><?php echo $row["vehicle_number"]; ?></td>

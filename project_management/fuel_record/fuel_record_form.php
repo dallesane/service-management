@@ -5,7 +5,7 @@
 <body>
 	<header id="pageHeader"><h2>Customer Information Management System - CIMS</h2></header>
 	<article id="mainArticle">
-	<h2>Add new project</h2>
+	<h2>Add new fuel record</h2>
     <?php
 	/*
 	NEW.PHP
@@ -78,6 +78,8 @@
 			// save the data to the database
 			mysqli_query($con, "INSERT fuel_record SET vehicle_number='$vehicle_number', fuel_name='$fuel_name', amount='$amount', quantity='$quantity'")
 			or die(mysqli_error($con));
+
+			print("Fuel record saved successfully !!");
 
 			// once saved, redirect back to the view page
 			//header("Location: project_form.php");

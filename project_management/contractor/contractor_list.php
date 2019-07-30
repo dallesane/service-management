@@ -52,7 +52,7 @@
 <tbody>
 <?php
 $count=1;
-$sel_query="Select * from contractor ORDER BY id desc;";
+$sel_query="SELECT * FROM contractor c JOIN project p ON c.id=p.id;";
 $result = mysqli_query($con,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
   <tr><td align="center"><?php echo $count; ?></td>
