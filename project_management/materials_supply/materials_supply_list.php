@@ -53,7 +53,7 @@
 <tbody>
 <?php
 $count=1;
-$sel_query="Select * from materials_supply ORDER BY id desc;";
+$sel_query="Select * from materials_supply m JOIN contractor c ON m.contractor_name=c.id JOIN materials t ON m.item_name=t.id;";
 $result = mysqli_query($con,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
   <tr><td align="center"><?php echo $count; ?></td>
@@ -125,6 +125,20 @@ while($row = mysqli_fetch_assoc($result)) { ?>
          <ul class="hidden">
           <li><a href="../vehicle/vehicle_form.php">Add New vehicle</a></li>
           <li><a href="../vehicle/vehicle_list.php">Vechicle List</a></li>
+        </ul>
+      </li>
+      <li>
+         Materials 
+         <ul class="hidden">
+          <li><a href="materials/materials_form.php">Add New materials</a></li>
+          <li><a href="materials/materials_list.php">View all materials List</a></li>
+        </ul>
+      </li>
+      <li>
+         Materials order and supply
+         <ul class="hidden">
+          <li><a href="materials_supply/materials_supply_form.php">Add New materials order or supply</a></li>
+          <li><a href="materials_supply/materials_supply_list.php">Materials order and supply</a></li>
         </ul>
       </li>
     </ul>

@@ -118,6 +118,20 @@ $row = mysqli_fetch_assoc($result);
           <li><a href="../vehicle/vehicle_list.php">Vechicle List</a></li>
         </ul>
       </li>
+      <li>
+         Materials 
+         <ul class="hidden">
+          <li><a href="materials/materials_form.php">Add New materials</a></li>
+          <li><a href="materials/materials_list.php">View all materials List</a></li>
+        </ul>
+      </li>
+      <li>
+         Materials order and supply
+         <ul class="hidden">
+          <li><a href="materials_supply/materials_supply_form.php">Add New materials order or supply</a></li>
+          <li><a href="materials_supply/materials_supply_list.php">Materials order and supply</a></li>
+        </ul>
+      </li>
     </ul>
       <ul class="hidden">
       <li><b><a href="../login/logout.php">logout</a></b>

@@ -1,6 +1,6 @@
 <?php
   require('../connect_db.php');
-    require('../login/auth.php');
+  require('../login/auth.php');
   
 $id=$_REQUEST['id'];
 $query = "SELECT * from driver where id='".$id."'"; 
@@ -17,7 +17,7 @@ $row = mysqli_fetch_assoc($result);
 <body>
   <header id="pageHeader"><h2>Customer Information Management System - CIMS</h2></header>
   <article id="mainArticle">
-  <h2>Edit contractor</h2>
+  <h2>Edit vehicle list</h2>
   <!-- <link rel="stylesheet" href="css/style.css" /> -->
   </head>
   <body>
@@ -36,8 +36,8 @@ $row = mysqli_fetch_assoc($result);
 
 
   $update="update driver set vehicle_number='".$vehicle_number."',
-  date='".$date."', driver_name='".$driver_name."',
-  payment='".$payment."'  where id='".$id."'";
+  date='".$date."', driver_name='".$driver_name."', payment='".$payment."' where id='".$id."'";
+
   mysqli_query($con, $update) or die(mysqli_error());
   $status = "Record Updated Successfully. </br></br>
   <a href='driver_list.php'>View Updated list</a>";
@@ -53,7 +53,7 @@ $row = mysqli_fetch_assoc($result);
     <p><input type="text" name="date" placeholder="Enter date" 
     required value="<?php echo $row['date'];?>" /></p>
     <p><input type="text" name="driver_name" placeholder="Enter driver name" 
-    required value="<?php echo $row['project_name'];?>" /></p>
+    required value="<?php echo $row['driver_name'];?>" /></p>
     <p><input type="text" name="payment" placeholder="Enter payment" 
     required value="<?php echo $row['payment'];?>" /></p>
     <p><input name="submit" type="submit" value="Update" /></p>
@@ -112,6 +112,20 @@ $row = mysqli_fetch_assoc($result);
          <ul class="hidden">
           <li><a href="../vehicle/vehicle_form.php">Add New vehicle</a></li>
           <li><a href="../vehicle/vehicle_list.php">Vechicle List</a></li>
+        </ul>
+      </li>
+      <li>
+         Materials 
+         <ul class="hidden">
+          <li><a href="materials/materials_form.php">Add New materials</a></li>
+          <li><a href="materials/materials_list.php">View all materials List</a></li>
+        </ul>
+      </li>
+      <li>
+         Materials order and supply
+         <ul class="hidden">
+          <li><a href="materials_supply/materials_supply_form.php">Add New materials order or supply</a></li>
+          <li><a href="materials_supply/materials_supply_list.php">Materials order and supply</a></li>
         </ul>
       </li>
     </ul>
