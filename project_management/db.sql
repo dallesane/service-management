@@ -35,7 +35,7 @@ PRIMARY KEY (id)
 CREATE TABLE driver (
 id INT NOT NULL AUTO_INCREMENT,
 vehicle_number INT NOT NULL,
-date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+date DATE NOT NULL,
 driver_name VARCHAR(40) NOT NULL,
 payment INT(50) NOT NULL,
 PRIMARY KEY (id),
@@ -100,8 +100,6 @@ supplied_date DATE NULL,
 contractor_name INT NOT NULL,
 item_name INT NOT NULL,
 price INT NOT NULL,
-
-
 PRIMARY KEY (id),
 FOREIGN KEY (contractor_name)
 	REFERENCES contractor(id)

@@ -3,8 +3,8 @@
   require('../login/auth.php');
 	
 $id=$_REQUEST['id'];
-$query = "SELECT * from maintenance_record where id='".$id."'"; 
-$result = mysqli_query($con, $query) or die ( mysqli_error());
+$query = "SELECT * FROM maintenance_record where id='".$id."'"; 
+$result = mysqli_query($con, $query) or die ( mysqli_error($con));
 $row = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>

@@ -18,7 +18,7 @@
   // since this form is used multiple times in this file, I have made it a function that is easily reusable
            // PERSONAL
 
-  function renderForm($vehicle_number, $driver_name, $payment, $error)
+  function renderForm($vehicle_number, $driver_name, $date, $payment, $error)
   {
   ?>
   <html>
@@ -33,9 +33,41 @@
 
   	<form action="" method="post">
   	<div>
-  		<br>
-  		<strong>Vehicle number: *</strong> <input type="text" name="vehicle_number" value="<?php echo $vehicle_number; ?>" /><br/>
-  		<br>
+      <strong>vehicle number: *</strong><?php echo $vehicle_number; ?><b/> 
+      <select name="vehicle_number">
+        <option selected="selected" value="">select vehicle number</option>
+        <?php 
+            require('../connect_db.php');
+       
+            $query = "SELECT * FROM vehicle";
+
+            $result = mysqli_query($con, $query);
+      
+
+          if ($result) {
+            while($row = mysqli_fetch_array($result)) {
+          // do something with the $row
+              
+              if ($vehicle == $row['id']){
+
+                echo '<option selected="selected" value="'.$row['id'].'">"'.$row['vehicle_number`'].'"</option>';
+                
+              }else{
+
+                echo '<option value="'.$row['id'].'">"'.$row['vehicle_number'].'"</option>';
+                // echo '<option value="'.$row['id'].'">"'.$row['district_name'].'"</option>';
+              }
+            }
+          }
+          else {
+            echo mysqli_error();
+          }
+        ?>
+        </select>
+      <br>
+  		<br>  
+      <strong>Date: *</strong> <input type="text" name="date" value="<?php echo $date; ?>" /><br/>
+      <br>
   		<strong>Driver name: *</strong> <input type="text" name="driver_name" value="<?php echo $driver_name; ?>" /><br/>
   		<br>
   		<strong>Payment: *</strong> <input type="text" name="payment" value="<?php echo $payment; ?>" /><br/>
@@ -61,21 +93,22 @@
   		// get form data, making sure it is valid
   		$vehicle_number = mysqli_real_escape_string($con, $_POST['vehicle_number']);
   		$driver_name = mysqli_real_escape_string($con, $_POST['driver_name']);
+      $date = mysqli_real_escape_string($con, $_POST['date']);
   		$payment = mysqli_real_escape_string($con, $_POST['payment']);
 
   		// check to make sure both fields are entered
 
-  	if ($vehicle_number == '' || $driver_name == '' || $payment == '' )
+  	if ($vehicle_number == '' || $date == '' || $driver_name == '' || $payment == '' )
   		{
   		// generate error message
   			$error = 'ERROR: Please fill in all required fields!';
   		// if either field is blank, display the form again
-  			renderForm($vehicle_number, $driver_name, $payment, $error);
+  			renderForm($vehicle_number, $driver_name, $date, $payment, $error);
   		}
   	else
   			{
   			// save the data to the database
-  			mysqli_query($con, "INSERT driver SET vehicle_number='$vehicle_number', driver_name='$driver_name', payment='$payment'")
+  			mysqli_query($con, "INSERT driver SET vehicle_number='$vehicle_number', driver_name='$driver_name', date='$date', payment='$payment'")
   			or die(mysqli_error($con));
 
   			print("Driver name saved successfully !!");
@@ -87,7 +120,7 @@
   	else
   			// if the form hasn't been submitted, display the form
   			{
-  			renderForm('', '', '', '');
+  			renderForm('', '', '', '', '');
   			}
   	?>
 

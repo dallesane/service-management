@@ -52,24 +52,26 @@
 <tbody>
 <?php
 $count=1;
-$sel_query="SELECT * FROM contractor c JOIN project p ON c.id=p.id;";
-$result = mysqli_query($con,$sel_query);
-while($row = mysqli_fetch_assoc($result)) { ?>
-  <tr><td align="center"><?php echo $count; ?></td>
-  <td align="center"><?php echo $row["contractor_name"]; ?></td>
-  <td align="center"><?php echo $row["contact"]; ?></td>
-  <td align="center"><?php echo $row["project_name"]; ?></td>
-  <td align="center"><?php echo $row["address"]; ?></td>
-  <td align="center"><?php echo $row["machine_list"]; ?></td>
-  <td align="center"><?php echo $row["machine_cost"]; ?></td>
-  <td align="center"><?php echo $row["advance_payment"]; ?></td>
-  <td align="center">
-  <a href="contractor_edit.php?id=<?php echo $row["id"]; ?>"><button>Edit</button></a>
-  </td>
-  <td align="center">
-  <a href="contractor_delete.php?id=<?php echo $row["id"]; ?>"><button>Delete</button></a>
-  </td>
-  </tr>
+$sel_query="SELECT * FROM contractor c JOIN project p ON c.project_name=p.id;";
+
+
+  $result = mysqli_query($con,$sel_query);
+  while($row = mysqli_fetch_assoc($result)) { ?>
+    <tr><td align="center"><?php echo $count; ?></td>
+    <td align="center"><?php echo $row["contractor_name"]; ?></td>
+    <td align="center"><?php echo $row["contact"]; ?></td>
+    <td align="center"><?php echo $row["project_name"]; ?></td>
+    <td align="center"><?php echo $row["address"]; ?></td>
+    <td align="center"><?php echo $row["machine_list"]; ?></td>
+    <td align="center"><?php echo $row["machine_cost"]; ?></td>
+    <td align="center"><?php echo $row["advance_payment"]; ?></td>
+    <td align="center">
+    <a href="contractor_edit.php?id=<?php echo $row["id"]; ?>"><button>Edit</button></a>
+    </td>
+    <td align="center">
+    <a href="contractor_delete.php?id=<?php echo $row["id"]; ?>"><button>Delete</button></a>
+    </td>
+    </tr>
     <?php $count++; } ?>
     </tbody>
     </table>

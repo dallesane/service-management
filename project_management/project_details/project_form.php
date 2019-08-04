@@ -5,18 +5,11 @@
 
 <!doctype html>
 <title>Project management</title>
+	
+	<link rel="stylesheet" type="text/css" href="../jquery-ui.min.css"> 
 
-<link rel="stylesheet" type="text/css" href="../css/style.css"> 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  </script>
-<body>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"> 
+	<body>
 	<header id="pageHeader"><h2>Customer Information Management System - CIMS</h2></header>
 	<article id="mainArticle">
 	<h2>Add new project</h2>
@@ -46,7 +39,22 @@
 	?>
 
 		<form action="" method="post">
+		    
 		<div>
+			<script src="../jquery-3.4.1.min.js"></script>
+			<script src="../jquery-ui.min.js"></script>
+			<script>
+				$(document).ready(function(){
+					$('#datepicker').datepicker({
+						dateFormat: "yy-mm-dd",
+						changeMonth: true;
+						changeYear: true
+					});
+				})
+			</script>
+			<fieldset>
+				date: <input type="text" size="20" class="form-control" id="datepicker">
+			</fieldset>	
 			<br>
 			<strong>Project name: *</strong> <input type="text" name="project_name" value="<?php echo $project_name; ?>" /><br/>
 			<br>
@@ -54,12 +62,11 @@
 			<br>
 			<strong>Cost: *</strong> <input type="text" name="cost" value="<?php echo $cost; ?>" /><br/>
 			<br>
-			<strong>Start date: *</strong> <input type="text" id="datepicker" name="start_date" value="<?php echo $start_date; ?>" /><br/>
+			<!-- <strong>Start date: *</strong> <input type="text" class="form-control" id="datepicker" name="start_date" value="<?php echo $start_date; ?>" /><br/> -->
 			<br>
 			<strong>End date: *</strong> <input type="text" id="datepicker" name="end_date" value="<?php echo $end_date; ?>" /><br/>
 			<br>
 			<p>* required</p>
-	 
 			<input type="submit" name="submit" value="Submit">
 
 		</div>

@@ -32,10 +32,68 @@
 
 		<form action="" method="post">
 		<div>
+	      <strong>vehicle number: *</strong><?php echo $vehicle_number; ?><b/> 
+	      <select name="vehicle_number">
+	        <option selected="selected" value="">select vehicle number</option>
+	        <?php 
+	            require('../connect_db.php');
+	       
+	            $query = "SELECT * FROM vehicle";
+
+	            $result = mysqli_query($con, $query);
+	      
+
+	          if ($result) {
+	            while($row = mysqli_fetch_array($result)) {
+	          // do something with the $row
+	              
+	              if ($vehicle == $row['id']){
+
+	                echo '<option selected="selected" value="'.$row['id'].'">"'.$row['vehicle_number`'].'"</option>';
+	                
+	              }else{
+
+	                echo '<option value="'.$row['id'].'">"'.$row['vehicle_number'].'"</option>';
+	                // echo '<option value="'.$row['id'].'">"'.$row['district_name'].'"</option>';
+	              }
+	            }
+	          }
+	          else {
+	            echo mysqli_error();
+	          }
+	        ?>
+          </select>
 			<br>
-			<strong>Vehicle number: *</strong> <input type="text" name="vehicle_number" value="<?php echo $vehicle_number; ?>" /><br/>
 			<br>
-			<strong>Fuel name: *</strong> <input type="text" name="fuel_name" value="<?php echo $fuel_name; ?>" /><br/>
+		    <strong>Fuel name: *</strong><?php echo $fuel_name; ?><b/> 
+		    <select name="fuel_name">
+		        <option selected="selected" value="">Select fuel name</option>
+		        <?php 
+		            require('../connect_db.php');
+		       
+		            $query = "SELECT * FROM fuel";
+
+		            $result = mysqli_query($con, $query);
+		      
+		          if ($result) {
+		            while($row = mysqli_fetch_array($result)) {
+		          // do something with the $row
+		              
+		              if ($fuel == $row['id']){
+
+		                echo '<option selected="selected" value="'.$row['id'].'">"'.$row['fuel_name'].'"</option>';
+		              }else{
+
+		                echo '<option value="'.$row['id'].'">"'.$row['fuel_name'].'"</option>';
+		              }
+		            }
+		          }
+		          else {
+		            echo mysqli_error();
+		          }
+		        ?>
+        	</select>
+			<br>
 			<br>
 			<strong>Amount: *</strong> <input type="text" name="amount" value="<?php echo $amount; ?>" /><br/>
 			<br>

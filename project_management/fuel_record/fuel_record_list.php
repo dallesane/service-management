@@ -33,7 +33,7 @@
 <body>
   <header id="pageHeader"><h2>Customer Information Management System - CIMS</h2></header>
   <article id="mainArticle">
-  <h2>All driver List</h2>
+  <h2>All fuel record List</h2>
   <table width="100%" border="1" style="border-collapse:collapse;">
 <thead>
   <tr>
@@ -50,7 +50,7 @@
 <tbody>
 <?php
 $count=1;
-$sel_query="SELECT * FROM fuel_record f JOIN vehicle v ON f.id=v.id JOIN fuel n ON f.id=v.id;";
+$sel_query="SELECT * FROM fuel_record f JOIN vehicle v ON f.vehicle_number=v.id JOIN fuel u ON f.fuel_name=u.id;";
 $result = mysqli_query($con,$sel_query);
 while($row = mysqli_fetch_assoc($result)) { ?>
   <tr><td align="center"><?php echo $count; ?></td>

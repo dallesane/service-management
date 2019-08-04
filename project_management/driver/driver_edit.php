@@ -17,7 +17,7 @@ $row = mysqli_fetch_assoc($result);
 <body>
   <header id="pageHeader"><h2>Customer Information Management System - CIMS</h2></header>
   <article id="mainArticle">
-  <h2>Edit vehicle list</h2>
+  <h2>Edit driver list</h2>
   <!-- <link rel="stylesheet" href="css/style.css" /> -->
   </head>
   <body>
@@ -33,11 +33,8 @@ $row = mysqli_fetch_assoc($result);
   $driver_name =$_REQUEST['driver_name'];
   $payment =$_REQUEST['payment'];
 
-
-
   $update="update driver set vehicle_number='".$vehicle_number."',
   date='".$date."', driver_name='".$driver_name."', payment='".$payment."' where id='".$id."'";
-
   mysqli_query($con, $update) or die(mysqli_error());
   $status = "Record Updated Successfully. </br></br>
   <a href='driver_list.php'>View Updated list</a>";
@@ -50,11 +47,11 @@ $row = mysqli_fetch_assoc($result);
     <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
     <p><input type="text" name="vehicle_number" placeholder="Enter vehicle number" 
     required value="<?php echo $row['vehicle_number'];?>" /></p>
-    <p><input type="text" name="date" placeholder="Enter date" 
+    <p><input type="text" name="date" placeholder="Enter date"
     required value="<?php echo $row['date'];?>" /></p>
-    <p><input type="text" name="driver_name" placeholder="Enter driver name" 
+    <p><input type="text" name="driver_name" placeholder="Enter driver_name"
     required value="<?php echo $row['driver_name'];?>" /></p>
-    <p><input type="text" name="payment" placeholder="Enter payment" 
+    <p><input type="text" name="payment" placeholder="Enter payment"
     required value="<?php echo $row['payment'];?>" /></p>
     <p><input name="submit" type="submit" value="Update" /></p>
     </form>
